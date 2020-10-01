@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
+
+/*
 var board = {
   cells:[
    {row:0, col:0, isMine: false, hidden: true},
@@ -20,10 +22,46 @@ var board = {
    {row:3, col:2, isMine: false, hidden: true}, 
    {row:3, col:3, isMine: false, hidden: true}
 ]
+}*/
+
+
+
+
+
+const board = document.getElementsByClassName('board');
+
+
+function generateBoard(){
+  //let mines = [true,false];
+  //let numberOfMines = Math.floor(Math.random() * 2);
+  board.cells = [];
+  let numberOfRows = 4;
+  for (let i =0; i<numberOfRows; i++)//RUNS 0, 4 TIMES, RUNS 1, 4 TIMES, RUNS 2, 4 TIMES ETC
+  for(let k=0; k<numberOfRows; k++){ // RUNS 0,1,2,3 --> 4 TIMES 
+    board.cells.push({
+      col:i,
+      row: k,
+      isMine: Math.random() >= 0.8, // 20% probability that the boolean value is "true". boolean is true = 1 or false = 0. 
+      isMarked:false,
+      hidden: true
+
+    })
+   
+  }
+//board.cells is an array of objects. There are 16 objects, each object has 5 properties. 
+//the properties are row, col, isMine, isMarked and hidden. 
+//
+}
+
+function restartGame(){
+  document.location.href = ""; //reload current page
 }
 
 
+
 function startGame () {
+
+  generateBoard()
   
 lib.initBoard();// Don't remove this function call: it makes the game work!
 
